@@ -19,6 +19,9 @@ app = init_app(use_rate_limitter=True)
 async def startup_event():
     Logger().get_logger()  # init logger before app starts up
 
+    #TODO init db
+    #TODO init starlette admin
+
 
 # shutdown event
 @app.on_event("shutdown")
@@ -28,7 +31,8 @@ async def shutdown_event():
 
 @app.get("/")
 async def root(request: Request):
-    pass
+    request_id = request.state.request_id
+    return {"message": "Hello World", 'request_id': request_id}
 
 
 # add API routes
