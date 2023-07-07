@@ -3,10 +3,18 @@ from fastapi.middleware.gzip import GZipMiddleware
 from uvicorn.middleware.proxy_headers import ProxyHeadersMiddleware
 
 # custom modules
-from cosmos.middlewares import CSRFMiddleware, RequestLogger, RequestID
+from cosmos.middlewares import (
+    CSRFMiddleware,
+    LgCdnBase64BodyMiddleware,
+    RequestLogger,
+    RequestID
+)
 
 
-def init_app(use_rate_limitter:bool=False):
+def init_app(
+    use_rate_limitter:bool=False,
+    use_csrf:bool=False,
+):
     app = FastAPI()
 
     if use_rate_limitter:
@@ -22,9 +30,13 @@ def init_app(use_rate_limitter:bool=False):
     app.add_middleware(GZipMiddleware, minimum_size=500)  # add gzip compression
 
     # add custom middlewares
+    app.add_middleware(LgCdnBase64BodyMiddleware)
     app.add_middleware(RequestLogger)
     app.add_middleware(RequestID)
-    app.add_middleware(CSRFMiddleware)
+
+    # check if CSRF middleware is enabled
+    if use_csrf:
+        app.add_middleware(CSRFMiddleware)
 
     return app
 

@@ -12,6 +12,7 @@ slowapi = "^0.1.8"
 uvicorn = "^0.22.0"
 apache-airflow = "^2.6.2"
 starlette-admin = "^0.10.0"
+parse = "^1.19.1"
 
 
 [build-system]

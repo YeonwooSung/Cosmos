@@ -5,7 +5,6 @@ import sys
 sys.path.append(".")
 sys.path.append("..")
 
-
 # custom modules
 from cosmos.app import init_app, add_api_routers
 from cosmos.utils.logging import Logger
