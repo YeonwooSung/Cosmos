@@ -10,6 +10,8 @@ python = "^3.10"
 fastapi = "^0.99.1"
 slowapi = "^0.1.8"
 uvicorn = "^0.22.0"
+apache-airflow = "^2.6.2"
+starlette-admin = "^0.10.0"
 
 
 [build-system]
