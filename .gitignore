@@ -165,5 +165,8 @@ cython_debug/
 # vscode
 .vscode/
 
+# tailwind
+tailwindcss
+
 # db
 **/*.db
