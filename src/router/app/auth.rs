@@ -129,6 +129,8 @@ pub async fn form_signup(
         return Err(SignUpError::PasswordMismatch);
     }
 
+    //TODO: Hash password
+
     // insert into db
     match sqlx::query!(
         "INSERT INTO users (email, password) VALUES ($1, $2) RETURNING id",
